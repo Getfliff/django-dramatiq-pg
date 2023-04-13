@@ -1,4 +1,4 @@
-from typing import NamedTuple, Optional
+from typing import List, NamedTuple, Optional
 
 from dramatiq import Encoder, Middleware
 
@@ -16,7 +16,7 @@ __all__ = (
 
 
 class DramatiqBrokerSettings(NamedTuple):
-    MIDDLEWARE: list[str]
+    MIDDLEWARE: List[str]
     DATABASE_ALIAS: str
 
 
@@ -31,7 +31,7 @@ class DramatiqSettings(NamedTuple):
             return import_string(self.DRAMATIQ_ENCODER)()
         return None
 
-    def middlewares(self) -> list[Middleware]:
+    def middlewares(self) -> List[Middleware]:
         return [
             import_string(middleware)()
             if isinstance(middleware, str)
