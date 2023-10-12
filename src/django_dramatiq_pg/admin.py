@@ -32,6 +32,16 @@ class BackgroundJobAdmin(admin.ModelAdmin):
         ActorFilter,
         "state",
     )
+    readonly_fields = (
+        "message_id",
+        "queue_name",
+        "actor",
+        "state",
+        "mtime",
+        "message",
+        "result",
+        "result_ttl",
+    )
 
     def actor(self, obj):
         return obj.message["actor_name"]
