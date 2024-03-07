@@ -1,4 +1,4 @@
-from urllib.parse import urlunparse
+from urllib.parse import urlunparse, quote
 
 __all__ = (
     'make_url',
@@ -8,6 +8,7 @@ __all__ = (
 def make_url(**config):
     user = config.get('USER', '')
     password = config.get('PASSWORD', '')
+    password = quote(password)
     host = config.get('HOST') or '__no_host__'
     port = config.get('PORT', '')
     options = config.get('OPTIONS', {})
